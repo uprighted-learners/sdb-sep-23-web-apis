@@ -52,10 +52,17 @@ const remove = document.getElementById("remove")
 const listItems = document.getElementsByClassName("listItem")
 
 remove.addEventListener("click", event => {
+    // if (listItems.length <= 0) {
+    //     const h4 = document.createElement("h4")
+    //     h4.textContent = "Try adding something, yo!"
+    //     ulToDo.appendChild(h4)
+    // } else {
+    //     ulToDo.removeChild(listItems[listItems.length - 1])
+    // }
+
+    // When they misbehave, just take their damn button away! :)
     if (listItems.length <= 0) {
-        const h4 = document.createElement("h4")
-        h4.textContent = "Try adding something, yo!"
-        ulToDo.appendChild(h4)
+        remove.style.display = "none"
     } else {
         ulToDo.removeChild(listItems[listItems.length - 1])
     }
