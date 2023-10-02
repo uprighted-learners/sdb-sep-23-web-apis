@@ -125,3 +125,33 @@ li.textContent = "Clean bedroom"
 li.className = "listItem"
 ulToDo.appendChild(li)
 
+console.log("----------------------------------------")
+
+/* 
+    ? HTMLCollection vs NodeList
+    
+    * HTMLCollection returns a list that is live
+    * Live lists DO show newly created elements even after their lookup
+    
+    * NodeList returns a static list of elements
+    * NodeLists DO NOT show newly created elements
+*/
+
+const htmlCollection = document.getElementsByClassName("listItem")
+const nodeList = document.querySelectorAll(".listItem")
+console.log("HTMLCollection", htmlCollection, "NodeList", nodeList)
+
+const testItem = document.createElement("li")
+testItem.textContent = "Test Item"
+testItem.className = "listItem"
+ulToDo.appendChild(testItem)
+
+// ? Last element isn't red because NodeList is static
+// for (i of nodeList) {
+//     i.style.color = "red"
+// }
+
+// ? All elements are red because HTMLCollection is live
+for (i of htmlCollection) {
+    i.style.color = "red"
+}
