@@ -41,11 +41,15 @@ btn.addEventListener("click", evt => {
     
     const foundUser = db.filter(entry => entry.email === email)
     
-    if (foundUser.length === 0) output.textContent = "No user found"
-
-    if (foundUser[0].password === pwd) {
-        output.textContent = "Logged in"
+    if (foundUser.length === 0) {
+        output.textContent = "No user found"
     } else {
-        output.textContent = "Incorrect password"
+        if (foundUser[0].password === pwd) {
+            output.textContent = "Logged in"
+        } else {
+            output.textContent = "Incorrect password"
+        }
     }
+
 })
+
