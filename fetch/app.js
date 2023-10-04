@@ -46,13 +46,43 @@
     ? Fetch API
     * fetch is an asynchronous function
     * we don't know how long request-response lifecycle will take
+    
+    * 1. Fetch your resource and return promise
+    * 2. Use .then resolver to catch fetch's return and assign to a parameter
+    * 3. The parameter is part of a Response interface object
+    * 4. Body of our response is inacessible. It's part of a ReadableStream object.
+    * 5. Utilize Response interface's .json() method to read the stram
+    * 6. .json() method returns a promise
+    * 7. Resolve the epromise with one more .then() resolver
+    * 8. Catch the return as a data parameter
 */
 
-const url = "https://pokeapi.co/api/v2/pokemon/"
+const url = "hxttps://pokeapi.co/api/v2/pokemon/"
+
 
 fetch(url)
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
         console.log(data)
+        data.results.forEach(pokemon => {
+            let h3 = document.createElement("h3")
+            h3.textContent = pokemon.name
+            document.body.appendChild(h3)
+        })
     })
+    .catch(err => console.log(err))
+    .then(() => console.log("Some code that runs after .catch() error handling"))
 
+// ? Async Function Fetch
+
+async function getData() {
+    try {
+        const res = await fetch(`${url}pikachu`)
+        const data = await res.json()
+        console.log(data)
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+// getData()
